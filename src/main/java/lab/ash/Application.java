@@ -15,7 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan("lab.ash")
-// @SpringApplicationConfiguration(classes = {DataSourceConfig.class, ActivitiConfig.class})
 @SpringApplicationConfiguration(classes = {AshConfig.class})
 public class Application {
 
