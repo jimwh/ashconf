@@ -1,0 +1,65 @@
+<ehcache>
+
+    <defaultCache
+            maxElementsInMemory="5000"
+            eternal="false"
+            timeToIdleSeconds="900"
+            timeToLiveSeconds="3600"
+            overflowToDisk="false"
+            memoryStoreEvictionPolicy="LRU"
+            />
+            
+	<cache name="irbCache"
+	   maxElementsInMemory="10000"
+	    eternal="false"
+	   overflowToDisk="false"
+	   timeToIdleSeconds="900"
+	   timeToLiveSeconds="3600"
+	   diskPersistent="false"
+	   diskExpiryThreadIntervalSeconds="120"
+	   memoryStoreEvictionPolicy="LRU"       
+	/>    
+	<cache name="coiCache"
+	   maxElementsInMemory="10000"
+	   eternal="false"
+	   overflowToDisk="false"
+	   timeToIdleSeconds="900"
+	   timeToLiveSeconds="3600"
+	   diskPersistent="false"
+	   diskExpiryThreadIntervalSeconds="120"
+	   memoryStoreEvictionPolicy="LRU"      
+	/>    
+	
+	<cache name="iacucCache"
+	   maxElementsInMemory="10000"
+	   eternal="false"
+	   overflowToDisk="false"
+	   timeToIdleSeconds="900"
+	   timeToLiveSeconds="3600"
+	   diskPersistent="false"
+	   diskExpiryThreadIntervalSeconds="120"
+	   memoryStoreEvictionPolicy="LRU"       
+	/>
+	
+	<cache name="rascalCache"
+	   maxElementsInMemory="10000"
+	   eternal="false"
+	   overflowToDisk="false"
+	   timeToIdleSeconds="900"
+	   timeToLiveSeconds="3600"
+	   diskPersistent="false"
+	   diskExpiryThreadIntervalSeconds="120"
+	   memoryStoreEvictionPolicy="LRU"       
+	/>	
+    
+    <cache name="aclCache"
+	   maxElementsInMemory="10000"
+	    eternal="false"
+	   overflowToDisk="false"
+	   timeToIdleSeconds="900"
+	   timeToLiveSeconds="3600"
+	   diskPersistent="false"
+	   diskExpiryThreadIntervalSeconds="120"
+	   memoryStoreEvictionPolicy="LRU"       
+	/>			        
+</ehcache>
