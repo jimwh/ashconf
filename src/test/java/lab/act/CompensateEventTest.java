@@ -32,7 +32,7 @@ public class CompensateEventTest extends UnitTestAccessor {
         // you can't add this now
         // list.add(new SimpleImmutableEntry<String, String>("foo1", "bar1"));
         for(Map.Entry<String, String>e: list) {
-            log.info(e.toString());
+            log.info("entry={}", e.toString());
         }
     }
 
