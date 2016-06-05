@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:activiti="http://activiti.org/bpmn"
+             typeLanguage="http://www.w3.org/2001/XMLSchema"
+             expressionLanguage="http://www.w3.org/1999/XPath"
+             targetNamespace="http://www.activiti.org/test">
+
+    <signal id="approveSignal" name="Approve Signal" activiti:scope="processInstance"/>
+
+    <process id="icoiProcess" name="ICOI Intake form process" isExecutable="true"
+             activiti:candidateStarterGroups="ICOI_CAN_PREAPPROVE_INTAKE_FORM">
+        <extensionElements>
+            <activiti:eventListener class="lab.act.listeners.ActEvtListener"/>
+        </extensionElements>
+
+        <startEvent id="startEvent" name="Start"/>
+
+        <endEvent id="endEvent" name="End"/>
+        <endEvent id="terminateEndEvent" name="TerminateEndEvent">
+            <terminateEventDefinition/>
+        </endEvent>
+
+        <userTask id="submit" name="Submit" activiti:candidateGroups="ICOI_CAN_SUBMIT_INTAKE_FORM"/>
+
+        <userTask id="deactivate" name="Deactivate" activiti:candidateGroups="ICOI_CAN_REVIEW_INTAKE_FORM"/>
+        <boundaryEvent id="deactivateTimer" name="Timer" attachedToRef="deactivate" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>${expirationDuration}</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+
+        <userTask id="reactivate" name="Reactivate" activiti:candidateGroups="ICOI_CAN_REVIEW_INTAKE_FORM"/>
+        <boundaryEvent id="reactivateTimer" name="Timer" attachedToRef="reactivate" cancelActivity="true">
+            <timerEventDefinition>
+                <timeDuration>${reactivateExpirationDuration}</timeDuration>
+            </timerEventDefinition>
+        </boundaryEvent>
+
+        <intermediateThrowEvent id="signalIntermediateThrowEvent" name="SignalThrowEvent">
+            <signalEventDefinition signalRef="approveSignal"/>
+        </intermediateThrowEvent>
+
+        <userTask id="return" name="Return" activiti:candidateGroups="ICOI_CAN_REVIEW_INTAKE_FORM"/>
+        <boundaryEvent id="boundarySignal" name="Signal" attachedToRef="return" cancelActivity="true">
+            <signalEventDefinition signalRef="approveSignal"/>
+        </boundaryEvent>
+
+        <parallelGateway id="PW"/>
+
+        <sequenceFlow sourceRef="startEvent" targetRef="submit"/>
+        <sequenceFlow sourceRef="submit" targetRef="PW"/>
+
+        <sequenceFlow sourceRef="PW" targetRef="return"/>
+        <sequenceFlow sourceRef="PW" targetRef="deactivate"/>
+
+        <sequenceFlow sourceRef="return" targetRef="terminateEndEvent"/>
+        <sequenceFlow sourceRef="boundarySignal" targetRef="endEvent"/>
+
+        <sequenceFlow sourceRef="deactivate" targetRef="signalIntermediateThrowEvent"/>
+        <sequenceFlow sourceRef="signalIntermediateThrowEvent" targetRef="reactivate"/>
+        <sequenceFlow sourceRef="reactivate" targetRef="deactivate"/>
+
+        <sequenceFlow sourceRef="reactivateTimer" targetRef="terminateEndEvent"/>
+        <sequenceFlow sourceRef="deactivateTimer" targetRef="terminateEndEvent"/>
+
+    </process>
+
+
+</definitions>
