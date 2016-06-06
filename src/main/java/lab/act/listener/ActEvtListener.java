@@ -1,4 +1,4 @@
-package lab.act.listeners;
+package lab.act.listener;
 
 import org.activiti.engine.delegate.event.ActivitiEvent;
 import org.activiti.engine.delegate.event.ActivitiEventListener;
