@@ -46,10 +46,10 @@ public class FooBar {
         final List<ConsentHeader> list = consentHeaderDAO.findAll();
         log.info("size={}", list.size());
         if( !list.isEmpty() ) {
-            testSnapshot(list.get(list.size()-1).getId());
+            //testSnapshot(list.get(list.size()-1).getId());
         }
-        bpmService.printProcessHistory("IacucApprovalProcess");
-        bpmService.printTaskHistory("IacucApprovalProcess");
+        //bpmService.printProcessHistory("IacucApprovalProcess");
+        //bpmService.printTaskHistory("IacucApprovalProcess");
         log.info("runtimeService={}", runtimeService != null);
         return env.getProperty("downloadDirectory");
     }
