@@ -24,6 +24,7 @@ import static org.junit.Assert.assertNull;
 @SpringApplicationConfiguration(classes = {ActivitiConfig.class})
 public class CompensateEventTest extends UnitTestAccessor {
 
+
     private static final Logger log = LoggerFactory.getLogger(CompensateEventTest.class);
     @Test
     @Deployment(resources = {"TestCompensateScope.bpmn20.xml"})
